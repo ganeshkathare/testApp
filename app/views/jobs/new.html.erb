@@ -1,0 +1,26 @@
+<h1>New job</h1>
+
+<% form_for(@job) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <% Category.all.each do |category| %>
+	  <label><%= f.radio_button :category_id, category.id %> <%=h category.name.titleize %></label>
+    <% end -%>
+    <%#= f.label :category_id %><br />
+    <%#= f.text_field :category_id %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', jobs_path %>

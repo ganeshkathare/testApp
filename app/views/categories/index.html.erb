@@ -1,0 +1,46 @@
+
+<%= link_to "edit", new_category_path, :href => "http://localhost:9000/categories/new_cat", :rel=>"lightbox"%>
+<h1>Listing categories</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+
+<% @categories.each do |category| %>
+  <tr>
+    <td id="tdName<%= category.id%>"><%=h category.name %></td>
+    <td><%=h category.description %></td>
+    <td><%= link_to 'Show', category %></td>
+    <td>
+	<% @cat = category %>
+	<div id="new_author_popup_<%= category.id%>" class="popup" style="display:none">
+	<a href="javascript:void(0);" class="popup_closebox">Close</a>
+	<div id="new_author<%= category.id %>"></div>
+	</div>
+	<%= link_to_remote 'Edit', :url => {:controller=>"categories", :action=>"edit", :cid=>category.id}, :update=> "new_author#{category.id}", :html => {:method=>"get", :id=>"popup_link_#{category.id}", :href => "#", :class => "popup_link"} %>
+	<script type="text/javascript">
+	    //<![CDATA[
+	    new Popup('new_author_popup_<%= category.id%>','popup_link_<%= category.id%>',{modal:true,position:'20%,15%'})
+	    //]]>
+	  </script>
+	</td>
+    <td><%= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<div id="new_author_popup_new" class="popup" style="display:none">
+<a href="javascript:void(0);" class="popup_closebox">Close</a>
+<div id="new_author"></div>
+</div>
+<%= link_to_remote 'New', :url=> {:action=>"new"}, :update=> "new_author", :html => {:id=>"popup_link_new", :href => "#", :class => "popup_link"}%>
+	
+	<script type="text/javascript">
+	    //<![CDATA[
+	    new Popup('new_author_popup_new','popup_link_new',{modal:true,position:'20%,15%'})
+	    //]]>
+	  </script>
+    

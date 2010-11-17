@@ -1,0 +1,18 @@
+<p>
+  <b>Category:</b>
+  <%=h @job.category_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @job.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @job.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_job_path(@job) %> |
+<%= link_to 'Back', jobs_path %>

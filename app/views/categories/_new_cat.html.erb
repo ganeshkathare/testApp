@@ -1,0 +1,24 @@
+
+<div id="new_author_popup_<%= @cat.id %>" class="popup" style="display:none">
+
+<h1>New category</h1>
+
+<% form_for(:category, @cat) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+    <%= tag :input, :type => 'button', :value => 'Cancel', :class => 'popup_closebox' %>
+
+  </p>
+<% end %>
+<%= link_to 'Back', categories_path %>
+</div>
